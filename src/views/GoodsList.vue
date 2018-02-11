@@ -25,7 +25,7 @@
           <div class="filter stopPop" id="filter" :class="{'filterby-show':filterBy}">
             <dl class="filter-price">
               <dt>Price:</dt>
-              <dd><a href="javascript:void(0)" :class="{'cur':priceChecked=='all'}" @click="priceChecked='all'">All</a></dd>
+              <dd><a href="javascript:void(0)" :class="{'cur':priceChecked=='all'}" @click="getAllPrice">All</a></dd>
               <dd v-for="(price,index) in priceFilter" >
                 <a href="javascript:void(0)" :class="{'cur':priceChecked==index}" @click="setPriceFilter(index)">{{price.startPrice}}-{{price.endPrice}}</a>
               </dd>
@@ -237,8 +237,12 @@
         this.priceChecked=index;
         this.page=1;
         this.getGoodsList()
-
         this.closePop();
+      },
+      getAllPrice(){
+        this.priceChecked='all';
+        this.page=1;
+        this.getGoodsList();
       },
       closePop(){
         this.filterBy=false;

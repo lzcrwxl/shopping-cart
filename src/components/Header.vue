@@ -48,7 +48,7 @@
             <ul>
               <li class="regi_form_input">
                 <i class="icon IconPeople"></i>
-                <input type="text" tabindex="1" name="loginname" class="regi_login_input" v-model="userName">
+                <input type="text" tabindnavbar-cart-countex="1" name="loginname" class="regi_login_input" v-model="userName">
               </li>
               <li class="regi_form_input noMargin">
                 <i class="icon IconPwd"></i>
@@ -119,7 +119,7 @@
           if(res.status=="0"){
             this.errorTip=false;
             this.loginModalFlag=false;
-            this.$store.commit("updateCartCount",res.result.userName)
+            this.$store.commit("updateUserInfo",res.result.userName)
             this.getCartCount();
           }else {
             this.errorTip=true;
@@ -130,7 +130,8 @@
         axios.post('/users/logout').then((response)=>{
           let res=response.data;
           if(res.status=="0"){
-            this.$store.commit("updateCartCount","")
+            this.$store.commit("initCartCount",0)
+            this.$store.commit("updateUserInfo","")
           }
         })
       },
